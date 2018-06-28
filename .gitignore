@@ -1,0 +1,7 @@
+*.swp
+*.pyc
+__pycache__
+/doc/tags
+/.envrc
+/test.vim
+/nvim.log*
