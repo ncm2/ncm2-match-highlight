@@ -86,9 +86,9 @@ def wrap():
             m = matches[i]
             if m['abbr'] != m['word']:
                 continue
-            if 'word_highlight' not in m['user_data']:
+            if 'match_highlight' not in m['user_data']:
                 continue
-            hl = m['user_data']['word_highlight']
+            hl = m['user_data']['match_highlight']
             for b, e in hl:
                 sub = m['abbr'][b:e]
                 for rp in replace_map:
