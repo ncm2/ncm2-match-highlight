@@ -82,22 +82,21 @@ def wrap():
         matches = old_matches_filter(data, sr, base, matches)
         idx = index_map[data['match_highlight']]
 
-        for i in range(len(matches)):
-            m = matches[i]
-            if m['abbr'] != m['word']:
+        for m in matches:
+            ud = m['user_data']
+            key = ud.get('match_key', 'abbr')
+            hl = ud.get('match_highlight', [])
+            if key == 'word':
                 continue
-            if 'match_highlight' not in m['user_data']:
-                continue
-            hl = m['user_data']['match_highlight']
             for b, e in hl:
-                sub = m['abbr'][b:e]
+                sub = m[key][b:e]
                 for rp in replace_map:
                     sub = sub.replace(rp[0], rp[idx])
-                a = m['abbr']
+                a = m[key]
 
                 # somehow the last highligted character is not properly
                 # displayed in the terminal, append a space as workaround
-                matches[i]['abbr'] = a[:b] + sub + (a[e:] or ' ')
+                m[key] = a[:b] + sub + (a[e:] or ' ')
 
         return matches
 
