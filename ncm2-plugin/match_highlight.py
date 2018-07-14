@@ -78,8 +78,10 @@ def wrap():
 
     old_matches_filter = ncm2_core.matches_filter
 
-    def new_matches_filter(data, sr, base, matches):
-        matches = old_matches_filter(data, sr, base, matches)
+    def new_matches_filter(*args):
+        data = args[0]
+        matches = args[-1]
+        matches = old_matches_filter(*args)
         idx = index_map[data['match_highlight']]
 
         for m in matches:
