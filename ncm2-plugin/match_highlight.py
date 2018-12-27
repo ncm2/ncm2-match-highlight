@@ -106,7 +106,7 @@ def wrap():
 
     vim.command(r'''
         let g:ncm2#match_highlight = get(g:, "ncm2#match_highlight", "double-struck")
-        autocmd User Ncm2CoreData let g:ncm2#core_data['match_highlight'] = g:ncm2#match_highlight
+        autocmd User Ncm2CoreData_complete,Ncm2CoreData_on_complete let g:ncm2#core_data['match_highlight'] = g:ncm2#match_highlight
     ''')
 
 
